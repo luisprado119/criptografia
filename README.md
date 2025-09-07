@@ -681,7 +681,7 @@ Para ver la página web, abre `web/index.html` en tu navegador.
 
 ## 📞 Contacto
 
-Creado por Luis - [@tu-usuario](https://github.com/tu-usuario)
+Creado por Luis - [@luisprado119](https://github.com/luisprado119)
 
 ---
 
