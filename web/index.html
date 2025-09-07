@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa de Criptografía y Blockchain</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #2d3748;
+            margin: 20px 0 10px 0;
+            font-size: 1.4rem;
+        }
+
+        .card h4 {
+            color: #4a5568;
+            margin: 15px 0 8px 0;
+            font-size: 1.2rem;
+        }
+
+        .icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: #667eea;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff6b6b;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: linear-gradient(120deg, #d299c2 0%, #fef9d7 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            margin: 20px 0;
+        }
+
+        ul,
+        ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:hover {
+            background: #f7fafc;
+        }
+
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .crypto-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .crypto-item h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .algorithm-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .algorithm-item {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            transition: border-color 0.3s ease;
+        }
+
+        .algorithm-item:hover {
+            border-color: #667eea;
+        }
+
+        .algorithm-item h5 {
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .algorithm-item p {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background: #5a67d8;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-shield-alt icon"></i>Guía Completa de Criptografía y Blockchain</h1>
+            <p>Todo lo que necesitas saber sobre criptografía, blockchain y criptomonedas</p>
+        </div>
+
+        <!-- Introducción -->
+        <div class="card">
+            <h2><i class="fas fa-info-circle icon"></i>¿Qué es la Criptografía?</h2>
+            <div class="section">
+                <p>La criptografía es la ciencia que se encarga de proteger la información mediante técnicas de
+                    codificación, haciendo que los datos sean incomprensibles para personas no autorizadas. Es la base
+                    de la seguridad digital moderna.</p>
+
+                <div class="highlight">
+                    <h4>🎯 Objetivo Principal</h4>
+                    <p>Garantizar la <strong>confidencialidad</strong>, <strong>integridad</strong> y
+                        <strong>autenticidad</strong> de la información en sistemas digitales.</p>
+                </div>
+
+                <h3>Los Tres Pilares de la Seguridad Criptográfica:</h3>
+                <ol>
+                    <li><strong>Confidencialidad:</strong> Solo las personas autorizadas pueden acceder a la información
+                    </li>
+                    <li><strong>Integridad:</strong> La información no ha sido modificada sin autorización</li>
+                    <li><strong>Autenticidad:</strong> Verificar que la información proviene de la fuente correcta</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Tipos de Criptografía -->
+        <div class="card">
+            <h2><i class="fas fa-key icon"></i>Tipos de Criptografía</h2>
+
+            <div class="section">
+                <h3>1. Criptografía Simétrica</h3>
+                <p>Utiliza la misma clave para cifrar y descifrar la información. Es rápida y eficiente, pero requiere
+                    que ambas partes compartan la clave de forma segura.</p>
+
+                <div class="algorithm-list">
+                    <div class="algorithm-item">
+                        <h5>AES (Advanced Encryption Standard)</h5>
+                        <p>Estándar actual para cifrado simétrico. Usa claves de 128, 192 o 256 bits.</p>
+                    </div>
+                    <div class="algorithm-item">
+                        <h5>DES (Data Encryption Standard)</h5>
+                        <p>Algoritmo más antiguo, ahora considerado inseguro para aplicaciones modernas.</p>
+                    </div>
+                    <div class="algorithm-item">
+                        <h5>3DES (Triple DES)</h5>
+                        <p>Versión mejorada de DES que aplica el algoritmo tres veces.</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <h4>💡 Ventajas de la Criptografía Simétrica</h4>
+                    <ul>
+                        <li>Muy rápida para grandes volúmenes de datos</li>
+                        <li>Requiere menos recursos computacionales</li>
+                        <li>Ideal para cifrado de archivos y comunicaciones en tiempo real</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <h4>⚠️ Desventajas</h4>
+                    <ul>
+                        <li>Problema de distribución de claves</li>
+                        <li>No proporciona no repudio</li>
+                        <li>Si se compromete la clave, se compromete toda la seguridad</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>2. Criptografía Asimétrica (Clave Pública)</h3>
+                <p>Utiliza un par de claves: una pública (para cifrar) y una privada (para descifrar). Resuelve el
+                    problema de distribución de claves de la criptografía simétrica.</p>
+
+                <div class="algorithm-list">
+                    <div class="algorithm-item">
+                        <h5>RSA</h5>
+                        <p>Basado en la dificultad de factorizar números grandes. Muy usado en certificados digitales.
+                        </p>
+                    </div>
+                    <div class="algorithm-item">
+                        <h5>ECC (Elliptic Curve Cryptography)</h5>
+                        <p>Usa curvas elípticas para proporcionar el mismo nivel de seguridad con claves más pequeñas.
+                        </p>
+                    </div>
+                    <div class="algorithm-item">
+                        <h5>secp256k1</h5>
+                        <p>Curva elíptica usada en Bitcoin y Ethereum. Proporciona 256 bits de seguridad.</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <h4>💡 Ventajas de la Criptografía Asimétrica</h4>
+                    <ul>
+                        <li>Resuelve el problema de distribución de claves</li>
+                        <li>Proporciona autenticación y no repudio</li>
+                        <li>Permite firmas digitales</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <h4>⚠️ Desventajas</h4>
+                    <ul>
+                        <li>Mucho más lenta que la criptografía simétrica</li>
+                        <li>Requiere más recursos computacionales</li>
+                        <li>Las claves públicas deben ser verificadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Funciones Hash -->
+        <div class="card">
+            <h2><i class="fas fa-fingerprint icon"></i>Funciones Hash</h2>
+
+            <div class="section">
+                <p>Las funciones hash son algoritmos que toman una entrada de cualquier tamaño y producen una salida de
+                    tamaño fijo. Son fundamentales para verificar la integridad de los datos.</p>
+
+                <h3>Características de las Funciones Hash:</h3>
+                <ul>
+                    <li><strong>Determinísticas:</strong> La misma entrada siempre produce la misma salida</li>
+                    <li><strong>Unidireccionales:</strong> Es imposible obtener la entrada original desde el hash</li>
+                    <li><strong>Resistencia a colisiones:</strong> Es muy difícil encontrar dos entradas que produzcan
+                        el mismo hash</li>
+                    <li><strong>Avalancha:</strong> Un pequeño cambio en la entrada produce un cambio drástico en el
+                        hash</li>
+                </ul>
+
+                <div class="algorithm-list">
+                    <div class="algorithm-item">
+                        <h5>SHA-256</h5>
+                        <p>Algoritmo de la familia SHA-2. Produce un hash de 256 bits. Muy usado en Bitcoin.</p>
+                    </div>
+                    <div class="algorithm-item">
+                        <h5>Keccak-256</h5>
+                        <p>Algoritmo usado en Ethereum. Parte de la familia SHA-3. Más resistente a ataques cuánticos.
+                        </p>
+                    </div>
+                    <div class="algorithm-item">
+                        <h5>MD5</h5>
+                        <p>Algoritmo más antiguo, ahora considerado inseguro debido a vulnerabilidades conocidas.</p>
+                    </div>
+                    <div class="algorithm-item">
+                        <h5>SHA-1</h5>
+                        <p>Predecesor de SHA-256, también considerado inseguro para aplicaciones modernas.</p>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <h4>🔍 Usos de las Funciones Hash</h4>
+                    <ul>
+                        <li><strong>Verificación de integridad:</strong> Comprobar que un archivo no ha sido modificado
+                        </li>
+                        <li><strong>Almacenamiento de contraseñas:</strong> Nunca se almacenan las contraseñas en texto
+                            plano</li>
+                        <li><strong>Blockchain:</strong> Crear enlaces entre bloques y verificar transacciones</li>
+                        <li><strong>Firmas digitales:</strong> Firmar documentos digitalmente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sistemas Centralizados vs Descentralizados -->
+        <div class="card">
+            <h2><i class="fas fa-network-wired icon"></i>Sistemas Centralizados vs Descentralizados</h2>
+
+            <div class="section">
+                <h3>🏛️ Sistemas Centralizados</h3>
+                <p>En un sistema centralizado, hay una autoridad central que controla y gestiona todos los aspectos del
+                    sistema. Ejemplos incluyen bancos tradicionales, gobiernos, y grandes corporaciones tecnológicas.
+                </p>
+
+                <div class="info">
+                    <h4>Características de los Sistemas Centralizados:</h4>
+                    <ul>
+                        <li>Una sola entidad tiene control total</li>
+                        <li>Decisiones tomadas por la autoridad central</li>
+                        <li>Punto único de falla</li>
+                        <li>Fácil de regular y supervisar</li>
+                        <li>Eficiente para operaciones simples</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <h4>Problemas de los Sistemas Centralizados:</h4>
+                    <ul>
+                        <li><strong>Censura:</strong> La autoridad central puede bloquear o restringir acceso</li>
+                        <li><strong>Punto único de falla:</strong> Si falla el sistema central, todo el sistema falla
+                        </li>
+                        <li><strong>Manipulación:</strong> La autoridad puede modificar reglas sin consenso</li>
+                        <li><strong>Desigualdad:</strong> Concentración de poder en pocas manos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>🌐 Sistemas Descentralizados</h3>
+                <p>En un sistema descentralizado, no hay una autoridad central. El control se distribuye entre múltiples
+                    nodos o participantes. Blockchain es un ejemplo perfecto de descentralización.</p>
+
+                <div class="info">
+                    <h4>Características de los Sistemas Descentralizados:</h4>
+                    <ul>
+                        <li>Múltiples nodos independientes</li>
+                        <li>Decisiones tomadas por consenso</li>
+                        <li>Sin punto único de falla</li>
+                        <li>Resistente a la censura</li>
+                        <li>Transparente y auditable</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h4>Ventajas de los Sistemas Descentralizados:</h4>
+                    <ul>
+                        <li><strong>Resistencia a la censura:</strong> Difícil de bloquear o cerrar</li>
+                        <li><strong>Transparencia:</strong> Todas las transacciones son públicas</li>
+                        <li><strong>Inmutabilidad:</strong> Los datos no pueden ser modificados fácilmente</li>
+                        <li><strong>Inclusión financiera:</strong> Acceso sin necesidad de bancos tradicionales</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <h4>Desafíos de los Sistemas Descentralizados:</h4>
+                    <ul>
+                        <li><strong>Escalabilidad:</strong> Pueden ser más lentos que los sistemas centralizados</li>
+                        <li><strong>Consumo de energía:</strong> Algunos algoritmos requieren mucha energía</li>
+                        <li><strong>Complejidad:</strong> Más difícil de entender y usar</li>
+                        <li><strong>Regulación:</strong> Desafíos para los reguladores tradicionales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Centralizado</th>
+                        <th>Descentralizado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Control</td>
+                        <td>Autoridad central</td>
+                        <td>Distribuido entre nodos</td>
+                    </tr>
+                    <tr>
+                        <td>Punto de falla</td>
+                        <td>Único</td>
+                        <td>Múltiples</td>
+                    </tr>
+                    <tr>
+                        <td>Velocidad</td>
+                        <td>Rápida</td>
+                        <td>Variable</td>
+                    </tr>
+                    <tr>
+                        <td>Censura</td>
+                        <td>Posible</td>
+                        <td>Difícil</td>
+                    </tr>
+                    <tr>
+                        <td>Transparencia</td>
+                        <td>Limitada</td>
+                        <td>Total</td>
+                    </tr>
+                    <tr>
+                        <td>Regulación</td>
+                        <td>Fácil</td>
+                        <td>Compleja</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Blockchain -->
+        <div class="card">
+            <h2><i class="fas fa-link icon"></i>¿Qué es Blockchain?</h2>
+
+            <div class="section">
+                <p>Blockchain es una tecnología de registro distribuido que mantiene una lista creciente de registros
+                    (bloques) que están vinculados y asegurados usando criptografía. Es la tecnología subyacente de las
+                    criptomonedas.</p>
+
+                <div class="highlight">
+                    <h4>🔗 Conceptos Clave de Blockchain</h4>
+                    <ul>
+                        <li><strong>Bloques:</strong> Contenedores que almacenan transacciones</li>
+                        <li><strong>Hash:</strong> Identificador único de cada bloque</li>
+                        <li><strong>Cadena:</strong> Los bloques están vinculados secuencialmente</li>
+                        <li><strong>Consenso:</strong> Mecanismo para acordar la validez de las transacciones</li>
+                    </ul>
+                </div>
+
+                <h3>¿Cómo Funciona Blockchain?</h3>
+                <ol>
+                    <li><strong>Transacción:</strong> Un usuario inicia una transacción</li>
+                    <li><strong>Validación:</strong> Los nodos de la red validan la transacción</li>
+                    <li><strong>Bloque:</strong> Las transacciones válidas se agrupan en un bloque</li>
+                    <li><strong>Minería:</strong> Los mineros compiten para resolver un problema criptográfico</li>
+                    <li><strong>Consenso:</strong> El bloque se añade a la cadena cuando se alcanza consenso</li>
+                    <li><strong>Inmutabilidad:</strong> Una vez añadido, el bloque es prácticamente inmutable</li>
+                </ol>
+
+                <h3>Tipos de Blockchain</h3>
+                <div class="crypto-grid">
+                    <div class="crypto-item">
+                        <h4>Pública</h4>
+                        <p>Cualquiera puede leer, escribir y participar en el consenso. Ejemplos: Bitcoin, Ethereum.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Privada</h4>
+                        <p>Solo entidades autorizadas pueden participar. Usada por empresas para casos de uso
+                            específicos.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Consorcio</h4>
+                        <p>Controlada por un grupo predefinido de organizaciones. Balance entre descentralización y
+                            control.</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <h4>🎯 Ventajas de Blockchain</h4>
+                    <ul>
+                        <li><strong>Descentralización:</strong> No hay autoridad central</li>
+                        <li><strong>Transparencia:</strong> Todas las transacciones son públicas</li>
+                        <li><strong>Inmutabilidad:</strong> Los datos no pueden ser modificados</li>
+                        <li><strong>Seguridad:</strong> Protegido por criptografía avanzada</li>
+                        <li><strong>Eliminación de intermediarios:</strong> Transacciones directas entre partes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Criptomonedas -->
+        <div class="card">
+            <h2><i class="fas fa-coins icon"></i>Criptomonedas</h2>
+
+            <div class="section">
+                <p>Las criptomonedas son monedas digitales que utilizan criptografía para asegurar las transacciones y
+                    controlar la creación de nuevas unidades. Son la aplicación más conocida de la tecnología
+                    blockchain.</p>
+
+                <h3>Características de las Criptomonedas</h3>
+                <ul>
+                    <li><strong>Digitales:</strong> Solo existen en forma digital</li>
+                    <li><strong>Descentralizadas:</strong> No controladas por bancos o gobiernos</li>
+                    <li><strong>Seguras:</strong> Protegidas por criptografía</li>
+                    <li><strong>Transparentes:</strong> Todas las transacciones son públicas</li>
+                    <li><strong>Globales:</strong> Pueden ser enviadas a cualquier parte del mundo</li>
+                </ul>
+
+                <h3>Principales Criptomonedas</h3>
+                <div class="crypto-grid">
+                    <div class="crypto-item">
+                        <h4>Bitcoin (BTC)</h4>
+                        <p>La primera y más valiosa criptomoneda. Creada por Satoshi Nakamoto en 2009. Usa el algoritmo
+                            SHA-256.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Ethereum (ETH)</h4>
+                        <p>Plataforma para contratos inteligentes y aplicaciones descentralizadas. Usa el algoritmo
+                            Keccak-256.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Litecoin (LTC)</h4>
+                        <p>Versión más rápida de Bitcoin. Usa el algoritmo Scrypt en lugar de SHA-256.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Ripple (XRP)</h4>
+                        <p>Enfocada en pagos internacionales rápidos y baratos. No usa blockchain tradicional.</p>
+                    </div>
+                </div>
+
+                <h3>Minería de Criptomonedas</h3>
+                <p>La minería es el proceso mediante el cual se validan las transacciones y se crean nuevas monedas. Los
+                    mineros compiten para resolver problemas criptográficos complejos.</p>
+
+                <div class="info">
+                    <h4>🔧 Tipos de Algoritmos de Consenso</h4>
+                    <ul>
+                        <li><strong>Proof of Work (PoW):</strong> Bitcoin, Ethereum (antes). Requiere poder
+                            computacional.</li>
+                        <li><strong>Proof of Stake (PoS):</strong> Ethereum 2.0, Cardano. Requiere poseer monedas.</li>
+                        <li><strong>Delegated Proof of Stake (DPoS):</strong> EOS, Tron. Votación de delegados.</li>
+                        <li><strong>Proof of Authority (PoA):</strong> Redes privadas. Validadores autorizados.</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <h4>⚠️ Riesgos de las Criptomonedas</h4>
+                    <ul>
+                        <li><strong>Volatilidad:</strong> Precios muy fluctuantes</li>
+                        <li><strong>Regulación:</strong> Cambios en las leyes pueden afectar su valor</li>
+                        <li><strong>Seguridad:</strong> Riesgo de pérdida de claves privadas</li>
+                        <li><strong>Escalabilidad:</strong> Limitaciones en el número de transacciones</li>
+                        <li><strong>Consumo energético:</strong> Algunos algoritmos requieren mucha energía</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aplicaciones Prácticas -->
+        <div class="card">
+            <h2><i class="fas fa-rocket icon"></i>Aplicaciones Prácticas</h2>
+
+            <div class="section">
+                <h3>Casos de Uso de la Criptografía</h3>
+                <div class="crypto-grid">
+                    <div class="crypto-item">
+                        <h4>Banca Digital</h4>
+                        <p>Protección de transacciones financieras, autenticación de usuarios y verificación de
+                            identidad.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Comunicaciones Seguras</h4>
+                        <p>Mensajería encriptada, videollamadas seguras y protección de datos personales.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Almacenamiento en la Nube</h4>
+                        <p>Cifrado de archivos antes de subirlos a servicios como Google Drive o Dropbox.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Certificados Digitales</h4>
+                        <p>Verificación de la autenticidad de sitios web y documentos digitales.</p>
+                    </div>
+                </div>
+
+                <h3>Casos de Uso de Blockchain</h3>
+                <div class="crypto-grid">
+                    <div class="crypto-item">
+                        <h4>Cadena de Suministro</h4>
+                        <p>Seguimiento de productos desde el origen hasta el consumidor final.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Votación Digital</h4>
+                        <p>Sistemas de votación transparentes y resistentes a la manipulación.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Propiedad Intelectual</h4>
+                        <p>Registro y protección de derechos de autor y patentes.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Identidad Digital</h4>
+                        <p>Sistemas de identificación descentralizados y seguros.</p>
+                    </div>
+                </div>
+
+                <h3>Contratos Inteligentes</h3>
+                <p>Los contratos inteligentes son programas que se ejecutan automáticamente cuando se cumplen ciertas
+                    condiciones. Están escritos en código y almacenados en blockchain.</p>
+
+                <div class="info">
+                    <h4>💡 Ventajas de los Contratos Inteligentes</h4>
+                    <ul>
+                        <li><strong>Automatización:</strong> Se ejecutan automáticamente</li>
+                        <li><strong>Transparencia:</strong> El código es público y auditable</li>
+                        <li><strong>Seguridad:</strong> Protegidos por criptografía</li>
+                        <li><strong>Eficiencia:</strong> Eliminan intermediarios</li>
+                        <li><strong>Inmutabilidad:</strong> No pueden ser modificados una vez desplegados</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seguridad y Mejores Prácticas -->
+        <div class="card">
+            <h2><i class="fas fa-shield-alt icon"></i>Seguridad y Mejores Prácticas</h2>
+
+            <div class="section">
+                <h3>Protección de Claves Privadas</h3>
+                <div class="warning">
+                    <h4>🔐 Reglas de Oro para las Claves Privadas</h4>
+                    <ul>
+                        <li><strong>Nunca compartas tu clave privada</strong> con nadie</li>
+                        <li><strong>Usa wallets hardware</strong> para grandes cantidades</li>
+                        <li><strong>Haz copias de seguridad</strong> de tus claves</li>
+                        <li><strong>Usa autenticación de dos factores</strong> cuando sea posible</li>
+                        <li><strong>Mantén tu software actualizado</strong></li>
+                    </ul>
+                </div>
+
+                <h3>Tipos de Wallets</h3>
+                <div class="crypto-grid">
+                    <div class="crypto-item">
+                        <h4>Hot Wallets</h4>
+                        <p>Conectados a internet. Más convenientes pero menos seguros. Ideales para pequeñas cantidades.
+                        </p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Cold Wallets</h4>
+                        <p>No conectados a internet. Más seguros pero menos convenientes. Ideales para grandes
+                            cantidades.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Hardware Wallets</h4>
+                        <p>Dispositivos físicos especializados. Balance entre seguridad y conveniencia.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Paper Wallets</h4>
+                        <p>Claves impresas en papel. Muy seguros pero pueden perderse o dañarse.</p>
+                    </div>
+                </div>
+
+                <h3>Phishing y Estafas Comunes</h3>
+                <div class="warning">
+                    <h4>🚨 Estafas a Evitar</h4>
+                    <ul>
+                        <li><strong>Phishing:</strong> Sitios web falsos que imitan exchanges legítimos</li>
+                        <li><strong>Ponzi Schemes:</strong> Esquemas de inversión que prometen retornos imposibles</li>
+                        <li><strong>Fake ICOs:</strong> Ofertas iniciales de monedas falsas</li>
+                        <li><strong>Social Engineering:</strong> Manipulación para obtener información personal</li>
+                        <li><strong>Malware:</strong> Software malicioso que roba claves privadas</li>
+                    </ul>
+                </div>
+
+                <div class="info">
+                    <h4>✅ Cómo Protegerte</h4>
+                    <ul>
+                        <li>Verifica siempre las URLs de los sitios web</li>
+                        <li>Usa solo exchanges y wallets de confianza</li>
+                        <li>Nunca hagas clic en enlaces sospechosos</li>
+                        <li>Mantén tu software antivirus actualizado</li>
+                        <li>Educa a otros sobre las estafas comunes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Futuro de la Criptografía -->
+        <div class="card">
+            <h2><i class="fas fa-crystal-ball icon"></i>Futuro de la Criptografía</h2>
+
+            <div class="section">
+                <h3>Tendencias Emergentes</h3>
+                <div class="crypto-grid">
+                    <div class="crypto-item">
+                        <h4>Criptografía Post-Cuántica</h4>
+                        <p>Algoritmos resistentes a computadoras cuánticas que podrían romper la criptografía actual.
+                        </p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Zero-Knowledge Proofs</h4>
+                        <p>Permiten probar que conoces algo sin revelar la información en sí.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Homomorphic Encryption</h4>
+                        <p>Permite realizar cálculos sobre datos encriptados sin descifrarlos.</p>
+                    </div>
+                    <div class="crypto-item">
+                        <h4>Multi-Party Computation</h4>
+                        <p>Permite que múltiples partes calculen una función sin revelar sus entradas.</p>
+                    </div>
+                </div>
+
+                <h3>Evolución de Blockchain</h3>
+                <ul>
+                    <li><strong>Interoperabilidad:</strong> Diferentes blockchains podrán comunicarse entre sí</li>
+                    <li><strong>Escalabilidad:</strong> Soluciones como Lightning Network y sharding</li>
+                    <li><strong>Sostenibilidad:</strong> Algoritmos más eficientes energéticamente</li>
+                    <li><strong>Adopción institucional:</strong> Más empresas y gobiernos adoptando blockchain</li>
+                </ul>
+
+                <div class="highlight">
+                    <h4>🚀 Oportunidades Futuras</h4>
+                    <ul>
+                        <li><strong>Web3:</strong> Internet descentralizada</li>
+                        <li><strong>DeFi:</strong> Servicios financieros descentralizados</li>
+                        <li><strong>NFTs:</strong> Tokens no fungibles para arte y coleccionables</li>
+                        <li><strong>Metaverso:</strong> Mundos virtuales con economías propias</li>
+                        <li><strong>IoT:</strong> Internet de las cosas con blockchain</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Guía Completa de Criptografía y Blockchain</p>
+            <p>Educación y conocimiento para el futuro digital</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling para el botón de volver arriba
+        document.querySelector('.back-to-top').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mostrar/ocultar botón de volver arriba
+        window.addEventListener('scroll', function () {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        // Animación de entrada para las tarjetas
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar animación a todas las tarjetas
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>

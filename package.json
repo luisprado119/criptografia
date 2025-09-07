@@ -1,0 +1,35 @@
+{
+    "name": "crypto-library-js",
+    "version": "1.0.0",
+    "description": "Una librería criptográfica completa en JavaScript",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "start": "node main.js",
+        "dev": "node --watch main.js",
+        "examples": "node examples/ejemplos-practicos.js",
+        "action": "node examples/ejemplo-accion-criptografia.js"
+    },
+    "keywords": [
+        "cryptography",
+        "encryption",
+        "hash",
+        "aes",
+        "rsa",
+        "base64"
+    ],
+    "author": "Luis",
+    "license": "MIT",
+    "devDependencies": {
+        "jest": "^29.7.0"
+    },
+    "dependencies": {
+        "crypto-js": "^4.2.0",
+        "keccak": "^3.0.4",
+        "secp256k1": "^5.0.0",
+        "elliptic": "^6.5.4",
+        "ethereumjs-util": "^7.1.5",
+        "ethereumjs-wallet": "^1.0.2"
+    }
+}
